@@ -1,6 +1,6 @@
 - Prompt 1
   ```plaintext
-  Based on the content inside ==== create [number of questions] multiple choice questions with this information with each multiple choice question having the following format:
+  Act as teacher or expert and based on the content inside ==== create [number of questions] multiple choice questions with this information with each multiple choice question having the following format with [level of difficulty]:
   
   Question: Question 1
   A: Answer 1
@@ -17,7 +17,7 @@
 - Prompt 2
   ```plaintext
   You are a genius writer.
-  Based on the passage inside --- [analyze or write more] about [number of words] words.
+  Based on the passage inside --- [analyze or write more] about [number of words] words with [tone of voice].
   ---------------------
   [content]
   ---------------------
