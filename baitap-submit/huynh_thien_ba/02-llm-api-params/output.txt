@@ -1,0 +1,17 @@
+<think>
+Okay, I need to translate this text about Lorem Ipsum from English to Vietnamese. First, I'll read through the entire text to understand the context and the technical terms involved. It's important to maintain the original meaning, so I'll make sure not to alter any key information.
+
+I notice that "Lorem Ipsum" is a proper noun, so I'll keep it as is. The text explains what Lorem Ipsum is and why it's used, so I'll need to ensure that the translation conveys these points clearly.
+
+I'll start by translating the first paragraph. It talks about Lorem Ipsum being dummy text in the printing industry since the 1500s. I'll make sure to keep the historical context intact. Next, the second paragraph discusses why it's used, mentioning how it helps in distracting readers with readable content. I'll ensure that the technical terms like "desktop publishing software" and "Aldus PageMaker" are accurately translated or kept as proper nouns if they don't have direct equivalents.
+
+I'll also pay attention to formatting and special characters. For example, the ellipsis at the end should remain. Since the requirement is to use a formal tone and technical style, I'll avoid colloquial language and keep the sentences structured similarly to the original.
+
+I'll go through each sentence one by one, translating carefully and cross-referencing to make sure I haven't missed any important details. After the initial translation, I'll read through it again to check for fluency and accuracy, ensuring that the translated text reads naturally in Vietnamese while preserving all the necessary information from the original.
+</think>
+
+Lorem Ipsum là gì?
+Lorem Ipsum chỉ là văn bản giả của ngành in ấn và soạn thảo.  Lorem Ipsum đã là văn bản giả tiêu chuẩn của ngành kể từ những năm 1500, khi một người in ấn vô danh lấy một bộ chữ và trộn lại để tạo một cuốn sách mẫu.  Nó đã tồn tại không chỉ qua năm thế kỷ, mà còn qua cả sự nhảy vọt vào lĩnh vực soạn thảo điện tử, cơ bản không thay đổi.  Nó trở nên phổ biến vào những năm 1960 với việc phát hành các tấm Letraset chứa các đoạn văn Lorem Ipsum, và gần đây hơn với phần mềm xuất bản trên máy tính để bàn như Aldus PageMaker bao gồm các phiên bản của Lorem Ipsum.
+
+Tại sao chúng ta sử dụng nó?
+Đây là một sự thật đã được thiết lập từ lâu rằng một người đọc sẽ bị phân tâm bởi nội dung có thể đọc được của một trang khi xem xét bố cục của nó.  Mục đích của việc sử dụng Lorem Ipsum là nó có một phân bố các chữ cái bình thường hơn so với việc sử dụng 'Nội dung ở đây, nội dung ở đây', khiến nó trông giống như tiếng Anh có thể đọc được.  Nhiều gói xuất bản trên máy tính để bàn và các trình soạn thảo trang web hiện nay sử dụng Lorem Ipsum làm văn bản mẫu mặc định của họ, và một tìm kiếm cho 'lorem ipsum' sẽ tiết lộ nhiều trang web vẫn còn trong giai đoạn sơ sinh.  Các phiên bản khác nhau đã phát triển qua nhiều năm, đôi khi là ngẫu nhiên, đôi khi là có chủ ý.
