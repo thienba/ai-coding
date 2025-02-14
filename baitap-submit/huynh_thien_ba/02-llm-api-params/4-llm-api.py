@@ -1,6 +1,9 @@
 from pathlib import Path
 import openai
 from typing import List, Optional
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class DocumentTranslator:
     def __init__(self, base_url: str, api_key: str, text_size: int = 2000):
@@ -80,8 +83,8 @@ class DocumentTranslator:
     
     
 
-base_url="https://api.groq.com/openai/v1"
-api_key='api_key'
+base_url=os.getenv("GROQ_BASE_URL")
+api_key=os.getenv("GROQ_API_KEY")
 
 translator = DocumentTranslator(base_url, api_key)
 translator.translate_file('input.txt', 'output.txt', 'en', 'vi', tone='formal', style='technical')

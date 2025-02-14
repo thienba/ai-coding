@@ -1,10 +1,11 @@
+import os
 from openai import OpenAI
 import requests
 from bs4 import BeautifulSoup
 
 client = OpenAI(
-    base_url="https://api.groq.com/openai/v1",
-    api_key='api_key',
+    base_url=os.getenv("GROQ_BASE_URL"),
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 def get_website_content(url):
@@ -28,7 +29,9 @@ def summarize_content(content):
     prompt = f"""Please provide a concise summary of the following article in Vietnamese. 
     Focus on the main points and key information:
 
+    ```
     {content}
+    ```
     
     Summary:"""
     

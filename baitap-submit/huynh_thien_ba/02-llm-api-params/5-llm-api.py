@@ -1,6 +1,9 @@
 import openai
 from pathlib import Path
 import subprocess
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class ProgrammingTutor:
     def __init__(self, base_url: str, api_key: str):
@@ -50,8 +53,8 @@ class ProgrammingTutor:
         else:
             print(f"Unsupported language: {language}")
 
-base_url="https://api.groq.com/openai/v1"
-api_key='api_key'
+base_url=os.getenv("GROQ_BASE_URL")
+api_key=os.getenv("GROQ_API_KEY")
 
 tutor = ProgrammingTutor(base_url, api_key)
 

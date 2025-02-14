@@ -1,8 +1,11 @@
 from openai import OpenAI
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 client = OpenAI(
-    base_url="https://api.groq.com/openai/v1",
-    api_key='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',
+    base_url=os.getenv("GROQ_BASE_URL"),
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 chat_completion = client.chat.completions.create(
