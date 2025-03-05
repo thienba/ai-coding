@@ -1,11 +1,33 @@
 import gradio as gr
 from diffusers import DiffusionPipeline
 import torch
+import psutil
+import gc
 
 model_cache = {}
 
+def get_available_memory():
+    if torch.cuda.is_available():
+        return torch.cuda.get_device_properties(0).total_memory - torch.cuda.memory_allocated()
+    else:
+        return psutil.virtual_memory().available
+
 def load_model(model_name):
+    required_memory = 7 * 1024 * 1024 * 1024  
+    
     if model_name not in model_cache:
+        available_memory = get_available_memory()
+        
+        if available_memory < required_memory:
+            for cached_model in list(model_cache.keys()):
+                if cached_model != model_name:
+                    if torch.cuda.is_available():
+                        model_cache[cached_model].to('cpu')
+                    del model_cache[cached_model]
+                    gc.collect()
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+        
         pipeline = DiffusionPipeline.from_pretrained(model_name, use_safetensors=True, safety_checker=None, requires_safety_checker=False)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         device = "mps" if torch.backends.mps.is_available() else device
