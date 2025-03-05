@@ -79,7 +79,7 @@ tools = [
 # https://platform.openai.com/api-keys
 client = OpenAI(
     base_url="https://api.groq.com/openai/v1", 
-    api_key="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"
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 COMPLETION_MODEL = "llama3-8b-8192"
