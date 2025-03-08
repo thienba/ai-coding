@@ -1,15 +1,16 @@
 import json
 import os
 import inspect
+from dotenv import load_dotenv
 import requests
 from pprint import pprint
 
 from openai import OpenAI
 from pydantic import TypeAdapter
 
+load_dotenv()
+
 # Implement 3 hàm
-
-
 def get_current_weather(location: str, unit: str):
     """Get the current weather in a given location"""
     # Hardcoded response for demo purposes
@@ -76,6 +77,12 @@ tools = [
     }
 ]
 
+FUNCTION_MAP = {
+    "get_current_weather": get_current_weather,
+    "get_stock_price": get_stock_price,
+    "view_website": view_website
+}
+
 # https://platform.openai.com/api-keys
 client = OpenAI(
     base_url="https://api.groq.com/openai/v1", 
@@ -86,7 +93,7 @@ COMPLETION_MODEL = "llama3-8b-8192"
 
 messages = [{
     "role": "user", 
-    "content": "Please use the view_website function to fetch and summarize the content from this URL: https://tuoitre.vn/cac-nha-khoa-hoc-nga-bao-tu-manh-nhat-20-nam-sap-do-bo-trai-dat-2024051020334196.htm"
+    "content": "Please fetch and summarize the content from this URL: https://tuoitre.vn/cac-nha-khoa-hoc-nga-bao-tu-manh-nhat-20-nam-sap-do-bo-trai-dat-2024051020334196.htm"
 }]
 
 print("Bước 1: Gửi message lên cho LLM")
@@ -114,47 +121,22 @@ else:
     arguments = json.loads(tool_call.function.arguments)
 
     print("Bước 4: Executing the requested function")
+    function_name = tool_call.function.name
     
-    if tool_call.function.name == 'get_current_weather':
-        weather_result = get_current_weather(
-            arguments.get('location'), arguments.get('unit'))
-        # Hoặc code này cũng tương tự
-        # weather_result = get_current_weather(**arguments)
-        print(f"Kết quả bước 4: {weather_result}")
-
-        print("Bước 5: Gửi kết quả lên cho LLM")
+    try:
+        function_result = FUNCTION_MAP[function_name](**arguments)
         messages.append(assistant_message)
         messages.append({
             "role": "tool",
-            "content": weather_result,
+            "content": function_result,
             "tool_call_id": tool_call.id
         })
-
-        pprint(messages)
 
         final_response = client.chat.completions.create(
             model=COMPLETION_MODEL,
             messages=messages
-            # Ở đây không có tools cũng không sao, vì ta không cần gọi nữa
         )
-        print(
-            f"Kết quả cuối cùng từ LLM: {final_response.choices[0].message.content}.")
-
-    if tool_call.function.name == 'view_website':
-        try:
-            website_content = view_website(arguments.get('url'))
-            messages.append(assistant_message)
-            messages.append({
-                "role": "tool",
-                "content": website_content,
-                "tool_call_id": tool_call.id
-            })
-
-            final_response = client.chat.completions.create(
-                model=COMPLETION_MODEL,
-                messages=messages
-            )
-            print("\nFinal summary:")
-            print(final_response.choices[0].message.content)
-        except Exception as e:
-            print(f"Error during website processing...")
+        print("\nFinal result:")
+        print(final_response.choices[0].message.content)
+    except Exception as e:
+        print(f"Error processing function {function_name}: {str(e)}")
